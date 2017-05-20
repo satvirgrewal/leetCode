@@ -2,7 +2,9 @@ package leetCode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Q349IntersectionOfTwoArrays {
 
@@ -58,6 +60,35 @@ public class Q349IntersectionOfTwoArrays {
         return op;
     }
 
-	
+
+    public int[] intersection1(int[] nums1, int[] nums2) {
+        
+        if(nums1 == null || nums1.length==0 || nums2 == null || nums2.length == 0){
+        return new int[0];
+        }
+        
+        Set<Integer> map = new HashSet<>();
+        int length1= nums1.length;
+        int length2= nums2.length;
+        ArrayList<Integer> output= new ArrayList<Integer>();
+        
+           for(int i=0;i<length2;i++){
+                   map.add(nums2[i]);
+           }
+           
+           for(int i = 0; i<length1;i++){
+               if(map.contains(nums1[i])){
+                   map.remove(nums1[i]);
+                   output.add(nums1[i]);
+               }
+           }
+           
+        int [] op = new int[output.size()];
+        for(int i=0;i<output.size();i++){
+            op[i]=output.get(i).intValue();
+        }
+        return op;
+    }
+
 
 }
